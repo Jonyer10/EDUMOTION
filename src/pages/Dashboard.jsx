@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  UserIcon,
   AcademicCapIcon,
   ClockIcon,
   ChartBarIcon,
   BookOpenIcon,
   PlayIcon,
   CheckCircleIcon,
-  ExclamationTriangleIcon,
-  ArrowRightOnRectangleIcon,
-  CogIcon,
-  BellIcon
+  ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
 
 export default function Dashboard(){
@@ -86,11 +82,6 @@ export default function Dashboard(){
     setUser(JSON.parse(raw));
   },[navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('edumotion_user');
-    navigate('/');
-  }
-
   const getEstadoColor = (estado) => {
     switch(estado) {
       case 'completado': return 'bg-green-100 text-green-800';
@@ -113,39 +104,12 @@ export default function Dashboard(){
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header del Dashboard */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="bg-blue-600 rounded-full p-2">
-                <UserIcon className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Panel de Usuario</h1>
-                <p className="text-gray-600">Bienvenido, {user.email}</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button className="text-gray-500 hover:text-gray-700">
-                <BellIcon className="w-6 h-6" />
-              </button>
-              <button className="text-gray-500 hover:text-gray-700">
-                <CogIcon className="w-6 h-6" />
-              </button>
-              <button 
-                onClick={handleLogout}
-                className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors"
-              >
-                <ArrowRightOnRectangleIcon className="w-4 h-4" />
-                <span>Cerrar Sesión</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 py-8">
+        {/* Bienvenida */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Panel de Usuario</h1>
+          <p className="text-gray-600">Bienvenido, {user.email}</p>
+        </div>
         {/* Estadísticas Rápidas */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-sm p-6">
